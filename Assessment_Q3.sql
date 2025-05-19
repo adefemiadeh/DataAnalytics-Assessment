@@ -8,6 +8,7 @@
     filters for accounts where the last transaction was more than 365 days ago.
 */
 
+
 SELECT
     p.id AS plan_id,
     p.owner_id,
