@@ -9,6 +9,7 @@
     and ordered by total deposits in descending order.
 */
 
+
 SELECT 
     u.id AS owner_id,
     CONCAT(first_name, ' ', last_name) AS name,
