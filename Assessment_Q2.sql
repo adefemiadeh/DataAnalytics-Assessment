@@ -9,6 +9,7 @@
     "High Frequency", "Medium Frequency", and "Low Frequency" categories.
 */
 
+
 SELECT
     CASE
         WHEN avg_monthly_transactions >= 10 THEN 'High Frequency'
