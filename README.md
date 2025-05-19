@@ -30,10 +30,14 @@ Q4: Customer Lifetime Value (CLV) Estimation
 
 ## Challenges
 
-* Q1: Ensuring that both savings and investment plans were counted correctly for each user, even if they had multiple of either type.  The use of COUNT(DISTINCT ...) with a CASE statement was crucial here and I  had to concatenate the first_name and last_name to provide a valid name.
+* Q1: Counting Savings and Investment Plans
+The challenge was counting both savings and investment plans per user, even when users had multiple of each. I solved this by using COUNT(DISTINCT ...) with a CASE statement, and I combined first_name and last_name to get a proper display name.
 
-* Q2: Calculating the average transactions per month required careful handling of the date functions and grouping.  I needed to calculate monthly transactions in a subquery and then average those counts which was a bit complicated at first.
+* Q2: Average Transactions Per Month
+Figuring out monthly averages was tricky at first. I used a subquery to count transactions per month, then took the average—getting the date functions and grouping right was key.
 
-* Q3: Accurately calculating the inactivity period in days required using the DATEDIFF function.
+* Q3: Inactivity Period in Days
+Calculating how long a user was inactive required using DATEDIFF. It was straightforward once I figured out the correct dates to compare.
 
-* Q4: The CLV calculation required careful attention to the order of operations and data types to ensure the result was accurate.  Specifically, the calculation and converting the tenure to a floating-point number was quite challenging.
+* Q4: Customer Lifetime Value (CLV)
+CLV was the toughest. I had to be careful with the math and data types—especially converting tenure to a float to avoid rounding issues in the final result.
