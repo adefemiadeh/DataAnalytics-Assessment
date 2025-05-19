@@ -8,6 +8,7 @@
     estimates the CLV using the provided formula.  The results are ordered by CLV in descending order.
 */
 
+
 SELECT
     u.id AS customer_id,
     CONCAT(first_name, ' ', last_name) AS name,
@@ -23,6 +24,6 @@ LEFT JOIN
 
 GROUP BY
     CONCAT(first_name, ' ', last_name), u.id,  u.created_on
-    
+
 ORDER BY
     estimated_clv DESC;
