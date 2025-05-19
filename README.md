@@ -17,23 +17,23 @@ Q2: Transaction Frequency Analysis
 * Key Concepts: Joins, Grouping, Aggregation, Subqueries, Conditional Logic
 
 Q3: Account Inactivity Alert
-* Approach: The query joins the plans_plan and savings_savingsaccount tables to link plans with their associated transactions.  It determines the type of plan (Savings or Investment) using a CASE statement.  It calculates the last transaction date for each plan using MAX(sa.created_at).  It then calculates the number of days since the last transaction using JULIANDAY.  Finally, it filters for plans where the last transaction was more than 365 days ago.
+* Approach: The query joins the plans_plan and savings_savingsaccount tables to link plans with their associated transactions.  It determines the type of plan (Savings or Investment) using a CASE statement.  It calculates the last transaction date for each plan using MAX(sa.created_on).  It then calculates the number of days since the last transaction using DATEDIFF.  Finally, it filters for plans where the last transaction was more than 365 days ago.
 
 * Key Tables: plans_plan, savings_savingsaccount
 * Key Concepts: Joins, Conditional Logic, Date Calculations, Grouping, Filtering
 
 Q4: Customer Lifetime Value (CLV) Estimation
-* Approach: The query joins users_customuser and savings_savingsaccount. It calculates the account tenure in months using JULIANDAY and CAST.  It counts the total number of transactions for each customer.  It then calculates the estimated CLV using the provided formula.  The results are ordered by CLV in descending order.
+* Approach: The query joins users_customuser and savings_savingsaccount. It calculates the account tenure in months using DATEDIFF and CURDATE.  It counts the total number of transactions for each customer.  It then calculates the estimated CLV using the provided formula.  The results are ordered by CLV in descending order.
 
 * Key Tables: users_customuser, savings_savingsaccount
 * Key Concepts: Joins, Date Calculations, Aggregation, CLV Calculation, Ordering
 
 ## Challenges
 
-* Q1: Ensuring that both savings and investment plans were counted correctly for each user, even if they had multiple of either type.  The use of COUNT(DISTINCT ...) with a CASE statement was crucial here.
+* Q1: Ensuring that both savings and investment plans were counted correctly for each user, even if they had multiple of either type.  The use of COUNT(DISTINCT ...) with a CASE statement was crucial here and I  had to concatenate the first_name and last_name to provide a valid name.
 
-* Q2: Calculating the average transactions per month required careful handling of the date functions and grouping.  I needed to calculate monthly transactions in a subquery and then average those counts.
+* Q2: Calculating the average transactions per month required careful handling of the date functions and grouping.  I needed to calculate monthly transactions in a subquery and then average those counts which was a bit complicated at first.
 
-* Q3: Accurately calculating the inactivity period in days required using the JULIANDAY function.
+* Q3: Accurately calculating the inactivity period in days required using the DATEDIFF function.
 
-* Q4: The CLV calculation required careful attention to the order of operations and data types to ensure the result was accurate.  Specifically, converting the tenure to a floating-point number was important.
+* Q4: The CLV calculation required careful attention to the order of operations and data types to ensure the result was accurate.  Specifically, the calculation and converting the tenure to a floating-point number was quite challenging.
